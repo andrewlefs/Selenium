@@ -1,0 +1,66 @@
+-Install Pear(go-pear.phar)
+Dir:(D:\MECORP\wamp\bin\php\php5.5.12)
+1 ) Locate the “php.ini” file. In my case, I found it at this path:
+H:\wamp\bin\php\php5.3.0\php.ini
+2 ) Find the following line:
+;phar.require_hash = On
+3 ) Uncomment the “;phar.require_hash = On” line by removing the semi-colon.
+4 ) Change “On” to “Off”.
+phar.require_hash = Off
+a)  If you installed phar file in the instruction above, then use command
+ php go-pear.phar 
+8 ) Now we need to edit the ‘php.ini’ again to add pear include path. Open ‘php.ini’ that we found in php5.3.0 folder and search for ‘go-pear’, you will see
+;***** Added by go-pear 
+include_path=".;H:\wamp\bin\php\php5.3.0\pear" 
+;*****
+Copy these three lines and paste it to ‘php.ini’ file which is located at :
+H:\wamp\bin\apache\apache2.2.11\bin
+10 ) Go to control panel –> system  and click on the ‘advanced system settings’ (it is on the left sidebar)
+11 ) Click on the environment variables button and new/edit ‘PATH’ variable and add
+‘H:\wamp\bin\php\php5.3.0’
+in your path. You also need to add a new variable ‘PHP_PEAR_PHP_BIN’ and set the value to
+‘H:\wamp\bin\php\php5.3.0\php.exe’
+) Once PEAR  is updated, on command prompt type:
+ pear channel-discover components.ez.no 
+ pear channel-discover pear.phpunit.de
+ pear channel-discover pear.symfony-project.com
+4 )Finally type:
+ pear install --alldeps phpunit/PHPUnit
+
+
+-Install PHPUnit Phar(phpunit.phar)
+link:https://phar.phpunit.de/phpunit.phar
+Download the phpunit.phar here and save in the current directory folder.
+Make a script files for lauch it: echo @php "%~dp0phpunit.phar" %* > phpunit.cmd
+launch it, as example phpunit --version
+
+Dir Setup: C:\bin
+
+-Install Composer(composer.phar)
+Dir:(D:\MECORP\wamp\bin\php\php5.5.12)
+
+
+-Install codecept(run-selenium-server.php)
+
+
+- Install PHPUNIT
+Dir:(D:\MECORP\wamp\bin\php\php5.5.12)
+pear channel-discover pear.phpunit.de
+pear channel-update pear.php.net
+pear upgrade-all
+pear config-set auto_discover 1
+pear install pear.phpunit.de/PHPUnit
+pear install phpunit
+
+
+- Start Selenium 
+java -jar selenium-server-standalone-2.53.0.jar
+
+
+-DUMP AUTOLOAD	
+composer install
+composer dump-autoload
+
+composer config -g -- disable-tls true
+
+java -jar selenium-server-standalone-2.45.0.jar -Dwebdriver.chrome.driver=/var/www/html/toolphantomjs/chromedriver
